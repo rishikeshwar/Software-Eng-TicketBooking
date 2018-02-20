@@ -14,6 +14,8 @@
                         <form class="container " method="post" action="postsignin/">
                           <div class = "row">
                             {% csrf_token %}
+                            Name:
+                            <input type="text" name="name">
                             Email:
                             <input type="email" name="email">
                             Password:

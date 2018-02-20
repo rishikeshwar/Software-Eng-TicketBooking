@@ -21,11 +21,20 @@ def login(request, error = ''):
 	return render(request,'login/login.html', {"error": error})
 
 def signin(request):
-	print('\n\n\n\n\n\n coming')
 	return render(request, 'signin/signin.html')
 
 def postsignin(request):
-	return render(request, 'base.html')
+    name  = request.POST.get("name")
+    email = request.POST.get("email")
+    passw = request.POST.get("pass")
+    try:
+        user = auth.create_user_with_email_and_password(email,passw)
+    except:
+            message="invalid info"
+            return redirect(reverse(login))
+    print(user['localId'])
+    
+    return render(request,'base.html', {"e":email})
 
 def postlogin(request):
 	email = request.POST.get('email')
